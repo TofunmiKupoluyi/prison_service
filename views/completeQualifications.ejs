@@ -2,13 +2,12 @@
 
 <!-- Default form contact -->
 <div class="completeRegistration">
-<form method="POST" action="/completeQualifications">
+<form method="POST" action="/client/completeQualifications">
     <p class="h4 text-center mb-4">Complete Yor Profile</p>
 
     <!-- Default input name -->
     <label for="defaultFormContactNameEx" class="grey-text">Education Level</label>
-    <input type="text" id="defaultFormContactNameEx" class="form-control" <% if (educationLevel) { %>
-                                                        value= "<%= educationLevel %>" <% } %> >
+    <input type="text" id="defaultFormContactNameEx" class="form-control"  value= "<% if (educationLevel) || "" %>" >
     <br>
 
     <!-- Default input email -->
