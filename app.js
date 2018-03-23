@@ -9,7 +9,11 @@ var cookieSession = require('cookie-session');
 var app = express();
 
 var connection = mysql.createConnection({
-    database: process.env.MYSQL_DB || "prison_system"
+    host: process.env.MYSQL_HOST || "localhost",
+    user: process.env.MYSQL_USER || "root",
+    password: process.env.MYSQL_PASSWORD || "",
+    database: process.env.MYSQL_DB || "prison_system",
+    charset: "utf8mb4",
 });
 
 var homeRouter = express.Router();
@@ -17,6 +21,8 @@ var clientRouter = express.Router();
 var adminRouter = express.Router();
 var recruiterRouter = express.Router();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
@@ -69,7 +75,8 @@ clientRouter.post("/register", function(req, res){
         err:1,
         res: ""
     }
-    if(req.body.firstName && req.body.lastName && req.body.password && req.body.prisonNumber){
+    console.log(req);
+    if(req.body.firstName && req.body.lastName && req.body.password && req.body.prisonerNumber){
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
         var email = req.body.email;
