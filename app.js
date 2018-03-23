@@ -67,7 +67,7 @@ clientRouter.post("/login", function(req, res){
     connection.query("select * from prisoner_info where (email=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
         if(err){
             data.res=err;
-            res.render("index", {Successful:false});
+            res.render("index.ejs", {Successful:false});
         }
         else{
             if(res1.length > 0){
@@ -75,14 +75,14 @@ clientRouter.post("/login", function(req, res){
                 data.err=0;
                 connection.query("select * from qualifications where prisoner_id = ?", [res1[0].id], function(err, res2){
                     console.log(res2);
-                    res.render("completeQualifications", {...res2, Successful:true});
+                    res.render("completeQualifications.ejs", {...res2, Successful:true});
                 });
-                
+
             }
 
             else{
                 data.res= "Error";
-                res.render("index", {Successful:false});
+                res.render("index.ejs", {Successful:false});
             }
         }
     });
