@@ -78,7 +78,7 @@ clientRouter.post("/login", function(req, res){
                     if(res2.length>0){
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink, skillType: res2[0].skillType});
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cvLink, skillType: res2[res2.length-1].skillType});
                     }
                     else{
                         req.session.prisonerNumber =1;
