@@ -42,7 +42,7 @@ homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.render("completeRegistration", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
+        res.render("completeRegistration.ejs", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
     }
     res.render("index.ejs", {successful:false});
 });
