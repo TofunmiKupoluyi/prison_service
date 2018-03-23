@@ -9,14 +9,14 @@
 
 <!-- Basic dropdown -->
 
-    <select name="educationLevel">
+    <select class="dropdown-qualifications" name="educationLevel">
       <option <% if (educationLevel==2){ %>
           selected
-          <%}%> value="2">Below High School</option>
+          <%}%> value="1">Below High School</option>
 
       <option <% if (educationLevel==1){ %>
           selected
-          <%}%> value="1">High School</option>
+          <%}%> value="2">High School</option>
 
       <option <% if (educationLevel==3){ %>
           selected
@@ -29,13 +29,13 @@
 <br>
 
     <!-- Default input email -->
-    <label for="defaultFormContactEmailEx" class="grey-text">Your email</label>
-    <input type="email" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= institution %>">
+    <label for="defaultFormContactEmailEx" class="grey-text"> Enter The institution</label>
+    <input type="email" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= institution %>" placeholder="Institution">
     <br>
 
     <!-- Default input subject -->
-    <label for="defaultFormContactSubjectEx" class="grey-text">Subject</label>
-    <input type="text" id="defaultFormContactSubjectEx" class="form-control">
+    <label for="defaultFormContactSubjectEx" class="grey-text">Skill Tupe</label>
+    <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= skillType %>" placeholder="Skill Type">
 
     <br>
 
