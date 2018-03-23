@@ -26,7 +26,7 @@ app.use("/", express.static("./views"));
 app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
   
 app.get("/", function(req, res){
-    res.sendFile("jokes.html",{ root: __dirname+"/views" });
+    res.render("index.ejs");
 });
  
 app.get("/client", function(req, res){
@@ -36,3 +36,5 @@ app.get("/client", function(req, res){
 app.listen(process.env.PORT || 3001, function(req, res){
     console.log("Server Running at 30001");
 });
+
+
