@@ -4,26 +4,26 @@
   <% data.forEach(function(data){ %>
 
   <div class="col-md-4"><form method="POST" action="/prison/completeRegistration">
-      <p class="h4 text-center mb-4">Complete Yor Profile</p>
+      <p class="h4 text-center mb-4">InMate Profile</p>
 
       <!-- Default input name -->
 
   <!-- Basic dropdown -->
 
       <select class="dropdown-qualifications" name="educationLevel">
-        <option <% if (educationLevel==2){ %>
+        <option <% if (data.education_Level==2){ %>
             selected
             <%}%> value="1">Below High School</option>
 
-        <option <% if (educationLevel==1){ %>
+        <option <% if (data.education_Level==1){ %>
             selected
             <%}%> value="2">High School</option>
 
-        <option <% if (educationLevel==3){ %>
+        <option <% if (data.educationLevel==3){ %>
             selected
             <%}%> value="3">College</option>
 
-        <option <% if (educationLevel==4){ %>
+        <option <% if (data.education_Level==4){ %>
             selected
             <%}%> value="4">Graduate School & Above</option>
       </select>
@@ -31,12 +31,12 @@
 
       <!-- Default input email -->
       <label for="defaultFormContactEmailEx" class="grey-text"> Enter The institution</label>
-      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= institution %>" placeholder="Institution">
+      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= data.institution %>" placeholder="Institution">
       <br>
 
       <!-- Default input subject -->
       <label for="defaultFormContactSubjectEx" class="grey-text">Skill Type</label>
-      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= skillType %>" placeholder="Skill Type">
+      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data.skillType %>" placeholder="Skill Type">
 
       <br>
 
