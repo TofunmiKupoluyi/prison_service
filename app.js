@@ -73,7 +73,7 @@ clientRouter.post("/login", function(req, res){
             if(res1.length > 0){
                 data.res = "Login successful";
                 data.err=0;
-                connection.query("select * from qualifications where prisoner_id = ?", [res1[0].id], function(err, res2){
+                connection.query("select * from qualification where prisoner_id = ?", [res1[0].id], function(err, res2){
                     console.log(res2);
                     req.session.prisonerNumber =1;
                     req.session.recordId = res1[0].id;
