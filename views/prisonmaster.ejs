@@ -12,19 +12,19 @@
   <!-- Basic dropdown -->
 
       <select class="dropdown-qualifications" name="educationLevel">
-        <option <% if (data.education_Level==2){ %>
+        <option <% if (data[counter].education_Level==2){ %>
             selected
             <%}%> value="1">Below High School</option>
 
-        <option <% if (data.education_Level==1){ %>
+        <option <% if (data[counter].education_Level==1){ %>
             selected
             <%}%> value="2">High School</option>
 
-        <option <% if (data.educationLevel==3){ %>
+        <option <% if (data[counter].educationLevel==3){ %>
             selected
             <%}%> value="3">College</option>
 
-        <option <% if (data.education_Level==4){ %>
+        <option <% if (data[counter].education_Level==4){ %>
             selected
             <%}%> value="4">Graduate School & Above</option>
       </select>
@@ -32,12 +32,12 @@
 
       <!-- Default input email -->
       <label for="defaultFormContactEmailEx" class="grey-text"> Enter The institution</label>
-      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= data.institution %>" placeholder="Institution">
+      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= data[counter].institution %>" placeholder="Institution">
       <br>
 
       <!-- Default input subject -->
       <label for="defaultFormContactSubjectEx" class="grey-text">Skill Type</label>
-      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data.skillType %>" placeholder="Skill Type">
+      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data[counter].skillType %>" placeholder="Skill Type">
 
       <br>
 

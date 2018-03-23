@@ -302,6 +302,7 @@ prisonRouter.get("/getPrisoners", function(req, res){
         else{
             data.res = res1;
             data.err = 0;
+            
             res.render("prisonmaster.ejs", {data:res1}); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
 
         }
