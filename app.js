@@ -23,6 +23,7 @@ var recruiterRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
@@ -32,7 +33,7 @@ app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
 app.use(express.static("public"));
-app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
+
 
 homeRouter.get("/", function(req, res){
     console.log(req.session);
