@@ -11,7 +11,7 @@
 
   <!-- Basic dropdown -->
 
-      <select class="dropdown-qualifications" name="educationLevel">
+      <select class="dropdown-qualifications" name="educationLevel" disabled>
         <option <% if (data[counter].education_level==2){ %>
             selected
             <%}%> value="1">Below High School</option>
@@ -32,17 +32,17 @@
 
       <!-- Default input email -->
       <label for="defaultFormContactEmailEx" class="grey-text"> Enter The institution</label>
-      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= data[counter].institution %>" placeholder="Institution">
+      <input type="text" id="defaultFormContactEmailEx" class="form-control" name="institution" value= "<%= data[counter].institution %>" placeholder="Institution" disabled>
       <br>
 
       <!-- Default input subject -->
       <label for="defaultFormContactSubjectEx" class="grey-text">Skill Type</label>
-      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data[counter].skill_type %>" placeholder="Skill Type">
+      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data[counter].skill_type %>" placeholder="Skill Type" disabled>
 
       <br>
 
       <div class="text-center mt-4">
-          <input type="submit"  class="btn btn-outline-warning" value="Approve">
+          <input type="submit"  class="btn btn-outline-warning" value="Approve <%= data[counter].first_name%>">
       </div>
   </form>  </div>
   <% } %>
