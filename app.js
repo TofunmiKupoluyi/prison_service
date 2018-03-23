@@ -145,7 +145,7 @@ clientRouter.post("/register", function(req, res){
                 data.res = "Successful registration";
                 req.session.prisonerNumber = prisonerNumber;
                 req.session.recordId = res1.insertId;
-                res.render("completeQualifications.ejs", {successful: true})
+                res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: ""})
             }
         });
     }
