@@ -75,7 +75,9 @@ clientRouter.post("/login", function(req, res){
                 data.err=0;
                 connection.query("select * from qualifications where prisoner_id = ?", [res1[0].id], function(err, res2){
                     console.log(res2);
-                    res.render("completeQualifications.ejs", {...res2, Successful:true});
+                    req.session.prisonerNumber =1;
+                    req.session.recordId = res1[0].id;
+                    res.render("completeQualifications.ejs", {Successful:true});
                 });
 
             }
