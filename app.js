@@ -63,8 +63,8 @@ clientRouter.post("/login", function(req, res){
         res:""
     }
     var password = req.body.password;
-    var prisonerNumber = req.body.prisonerNumber;
-    connection.query("select * from prisoner_info where (prisoner_number=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
+    var prisonerNumber = req.body.email;
+    connection.query("select * from prisoner_info where (email=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
         if(err){
             data.res=err;
             res.render("index", {Successful:false});
@@ -74,6 +74,7 @@ clientRouter.post("/login", function(req, res){
                 data.res = "Login successful";
                 data.err=0;
                 connection.query("select * from qualifications where prisoner_id = ?", [res1[0].id], function(err, res2){
+                    console.log(res2);
                     res.render("completeQualifications", {...res2, Successful:true});
                 });
                 
@@ -111,8 +112,8 @@ clientRouter.post("/completeQualifications", function(req, res){
                 res.json(data);
             }
         });
-
     }
+
     else{
         data.res = "Not registered";
         res.json(data);
