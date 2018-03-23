@@ -42,7 +42,7 @@ homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.send(req.session.prisonerNumber);
+        res.render("completeRegistration");
     }
     res.render("index.ejs");
 });
