@@ -228,7 +228,7 @@ adminRouter.get("/category", function(req, res){
         res: ""
     }
     var categoryName = req.query.category;
-    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level"
+    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, prisoner_info.institution, qualification.skill_type, qualification.education_level"
     +" FROM prisoner_info"
     +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
     +" WHERE (qualification.skill_type = ? and prisoner_info.registration_status=true)", [category], function(err, res1){
