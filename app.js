@@ -79,7 +79,7 @@ clientRouter.post("/login", function(req, res){
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
                         console.log(res2.length-1);
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cvLink, skillType: res2[res2.length-1].skillType});
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cv_link, skillType: res2[res2.length-1].skill_type});
                     }
                     else{
                         req.session.prisonerNumber =1;
