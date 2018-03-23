@@ -42,7 +42,7 @@ homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.render("completeRegistration", {successful:true});
+        res.render("completeRegistration", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
     }
     res.render("index.ejs", {successful:false});
 });
@@ -109,24 +109,24 @@ clientRouter.post("/completeQualifications", function(req, res){
         var institution = req.body.institution;
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
-    
+
 
         connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId, educationLevel, institution, cvLink, skillType], function(err, res1){
             if(err){
                 data.res = err;
-                res.redirect("/client/login");
+                res.json(data);
             }
             else{
                 data.err= 0;
                 data.res = "Successfully added qualification";
-                res.redirect("/client/login");
+                res.json(data);
             }
         });
     }
 
     else{
         data.res = "Not registered";
-        res.redirect("/client/login");
+        res.json(data);
     }
 });
 
