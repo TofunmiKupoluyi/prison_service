@@ -61,18 +61,18 @@ clientRouter.post("/login", function(req, res){
     connection.query("select * from prisoner_info where (prisoner_number=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
         if(err){
             data.res=err;
-            res.json(data);
+            res.render("index", {Successful:false});
         }
         else{
             if(res1.length > 0){
                 data.res = "Login successful";
                 data.err=0;
-                res.json(data);
+                res.render("completeQualifications", {...res1, Successful:true});
             }
 
             else{
                 data.res= "Error";
-                res.json(data);
+                res.render("index", {Successful:false});
             }
         }
     });
