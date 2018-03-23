@@ -36,7 +36,7 @@ app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
 app.use(express.static("public"));
-
+app.set("view engine","ejs");
 
 homeRouter.get("/", function(req, res){
     console.log(req.session);
