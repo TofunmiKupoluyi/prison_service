@@ -8,3 +8,8 @@ connection.query("UPDATE qualification SET education_level=?, institution=?, cv_
                 data.res = "Successful qualification";
                 res.json(data);
             }
+            
+connection.query("select * from qualification where (prisoner_id=? and id=?) limit 1 ", [prisoner_id, id], function(err, res1)
+                 
+                 
+                 
