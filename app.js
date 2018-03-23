@@ -48,6 +48,12 @@ homeRouter.get("/", function(req, res){
 });
 
 clientRouter.get("/", function(req, res){
+    req.session.prisonerNumber = null;
+    req.session.recordId = null;
+    res.redirect("/");
+});
+
+clientRouter.get("/", function(req, res){
     res.sendFile("jokes.html",{ root: __dirname+"/views" });
 });
 
