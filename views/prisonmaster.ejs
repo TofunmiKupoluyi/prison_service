@@ -49,19 +49,19 @@
       <select class="dropdown-qualifications" name="rating" >
         <option <% if (data[counter].rating==2){ %>
             selected
-            <%}%> value="1">Below High School</option>
+            <%}%> value="1">Excellent Behaviour</option>
 
         <option <% if (data[counter].rating==1){ %>
             selected
-            <%}%> value="2">High School</option>
+            <%}%> value="2">Good Behaviour</option>
 
         <option <% if (data[counter].rating==3){ %>
             selected
-            <%}%> value="3">College</option>
+            <%}%> value="3">Fair Behaviour</option>
 
         <option <% if (data[counter].rating==4){ %>
             selected
-            <%}%> value="4">Graduate School & Above</option>
+            <%}%> value="4">Bad Behaviour</option>
       </select>
 
       <div class="text-center mt-4">
@@ -74,4 +74,4 @@
 </div>
 </div>
 
-<% include ./partials/adminheader %>
+<% include ./partials/adminfooter %>
