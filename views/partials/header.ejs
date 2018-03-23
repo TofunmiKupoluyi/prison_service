@@ -62,6 +62,9 @@
           </div>
           <button type="button" class="btn btn-outline-default waves-effect" data-toggle="modal" data-target="#LoginModal">Login</button>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
+          <% if (successful){ %>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#SignupModal">Sign Up</button>
+                            <%}%>
         </form>
       </div>
     </div>

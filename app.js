@@ -42,9 +42,9 @@ homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.render("completeRegistration");
+        res.render("completeRegistration", {successful:true});
     }
-    res.render("index.ejs");
+    res.render("index.ejs", {successful:false});
 });
 
 clientRouter.get("/", function(req, res){
@@ -126,20 +126,20 @@ clientRouter.post("/register", function(req, res){
         connection.query("INSERT INTO prisoner_info SET first_name=?, last_name=?, email=?, password=?, prisoner_number=?, registration_status=false", [firstName, lastName, email, password, prisonerNumber], function(err, res1){
             if(err){
                 data.res = err;
-                res.json(data);
+                res.render("index", {successful:false});
             }
             else{
                 data.err= 0;
                 data.res = "Successful registration";
                 req.session.prisonerNumber = prisonerNumber;
                 req.session.recordId = res1.insertId;
-                res.render("completeQualifications.ejs")
+                res.render("completeQualifications.ejs", {successful: true})
             }
         });
     }
     else{
         data.res= "Incomplete parameters";
-        res.json(data);
+        res.render("index", {successful: false});
     }
 
 });
