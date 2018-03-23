@@ -35,6 +35,7 @@ app.use(express.static("public"));
 app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
 
 homeRouter.get("/", function(req, res){
+    console.log(req.session);
     if(req.session.prisonerNumber){
         res.send(req.session.prisonerNumber);
     }
