@@ -111,18 +111,41 @@ clientRouter.post("/completeQualifications", function(req, res){
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
 
-
-        connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId, educationLevel, institution, cvLink, skillType], function(err, res1){
+        connection.query("SELECT * FROM qualification WHERE prisoner_id=?", [recordId], function(err, res1){
             if(err){
-                data.res = err;
-                res.json(data);
+                res.json(err);
             }
             else{
-                data.err= 0;
-                data.res = "Successfully added qualification";
-                res.json(data);
+                if(res1.length>0){
+                    connection.query("UPDATE qualification SET education_level=?, institution=?, cv_link=?, skill_type=? where prisoner_id=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
+                        if(err){
+                            res.json(err);
+                        }
+                        else{
+                            data.err=0;
+                            data.res="Successful";
+                            res.json(data);
+                        }
+                    });
+                }
+                else{
+                    connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
+                        if(err){
+                            data.res = err;
+                            res.json(data);
+                        }
+                        else{
+                            data.err= 0;
+                            data.res = "Successfully added qualification";
+                            res.json(data);
+                        }
+                    });
+                }
+            
+
             }
         });
+        
     }
 
     else{
