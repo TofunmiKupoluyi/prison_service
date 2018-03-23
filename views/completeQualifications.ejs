@@ -34,8 +34,23 @@
     <br>
 
     <!-- Default input subject -->
-    <label for="defaultFormContactSubjectEx" class="grey-text">Skill Type</label>
-    <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= skillType %>" placeholder="Skill Type">
+    <select class="dropdown-qualifications" name="educationLevel">
+      <option <% if (data[counter].skill_type =="Analytics"){ %>
+          selected
+          <%}%> value="Analytics">Analytics</option>
+
+      <option <% if (data[counter].skill_type=="Website Development"){ %>
+          selected
+          <%}%> value="Website Development">Website Development</option>
+
+      <option <% if (data[counter].skill_type=="Writing"){ %>
+          selected
+          <%}%> value="Writing">Writing</option>
+
+      <option <% if (data[counter].skill_type=="Marketing"){ %>
+          selected
+          <%}%> value="Marketing">Marketing</option>
+    </select>
 
     <br>
 
