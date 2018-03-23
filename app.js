@@ -73,7 +73,8 @@ clientRouter.post("/register", function(req, res){
         err:1,
         res: ""
     }
-    if(req.body.firstName && req.body.lastName && req.body.password && req.body.prisonNumber){
+    console.log(req);
+    if(req.body.firstName && req.body.lastName && req.body.password && req.body.prisonerNumber){
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
         var email = req.body.email;
