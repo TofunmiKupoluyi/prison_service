@@ -73,7 +73,10 @@ clientRouter.post("/login", function(req, res){
             if(res1.length > 0){
                 data.res = "Login successful";
                 data.err=0;
-                res.render("completeQualifications", {...res1, Successful:true});
+                connection.query("select * from qualifications where prisoner_id = ?", [res1[0].id], function(err, res2){
+                    res.render("completeQualifications", {...res2, Successful:true});
+                });
+                
             }
 
             else{
