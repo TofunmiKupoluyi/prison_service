@@ -81,6 +81,8 @@ clientRouter.post("/login", function(req, res){
                         res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink});
                     }
                     else{
+                        req.session.prisonerNumber =1;
+                        req.session.recordId = res1[0].id;
                         res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: ""});
                     }
                 });
