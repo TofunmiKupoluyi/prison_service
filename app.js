@@ -36,13 +36,13 @@ app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
 app.use(express.static("public"));
-
+app.set("view engine","ejs");
 
 homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.render("completeRegistration", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
+        res.render("completeRegistration.ejs", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
     }
     res.render("index.ejs", {successful:false});
 });
@@ -78,7 +78,8 @@ clientRouter.post("/login", function(req, res){
                     if(res2.length>0){
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink, skillType: res2[0].skillType});
+                        console.log(res2.length-1);
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cv_link, skillType: res2[res2.length-1].skill_type});
                     }
                     else{
                         req.session.prisonerNumber =1;
