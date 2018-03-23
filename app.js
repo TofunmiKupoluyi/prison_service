@@ -197,7 +197,7 @@ prisonRouter.post("/completeRegistration", function(req, res){
         err:1,
         res: ""
     }
-    if(req.body.id && req.body.birthDate && req.body.sentenceStartDate && req.body.rating){
+    if(req.body.id && req.body.birthDate && req.body.sentenceStartDate && req.body.termSentence && req.body.rating){
         var prisonerId = req.body.id;
         var birthDate = req.body.birthDate;
         var sentenceStartDate = req.body.sentenceStartDate;
