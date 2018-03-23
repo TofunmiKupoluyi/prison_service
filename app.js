@@ -192,7 +192,7 @@ adminRouter.get("/", function(req, res){
     res.render("adminindex.ejs");
 });
 
-adminRouter.post("/completeRegistration", function(req, res){
+prisonRouter.post("/completeRegistration", function(req, res){
     var data = {
         err:1,
         res: ""
@@ -284,6 +284,7 @@ adminRouter.post("/hire", function(req, res){
     })
 });
 
+
 prisonRouter.get("/getPrisoners", function(req, res){
     var data={
         err: 1,
@@ -301,7 +302,7 @@ prisonRouter.get("/getPrisoners", function(req, res){
         else{
             data.res = res1;
             data.err = 0;
-            res.json(data); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
+            res.render("prisonMaster.ejs", {data:res1}); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
 
         }
     });
