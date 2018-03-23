@@ -34,9 +34,30 @@ h6 {
 
 .prison-footer{
 
-  margin-top: 50%;
+  margin-top: 10%;
 }
 
 .nav-search{
 margin:0 auto 0 auto;
+}
+
+#Profile-emoji{
+  font-size:35px !important;
+}
+.admincontent{
+  margin: 20% -5% 0 auto;
+  width: 90%;
+
+}
+.grid-contents{
+    max-width:25%;
+    border: 1px solid black;
+    margin-top: 1%;
+    margin-bottom: 0%;
+    margin-right: 0%;
+}
+
+.catch{
+  margin-right: 30%;
+
 }
