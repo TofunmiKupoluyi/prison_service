@@ -201,9 +201,10 @@ prisonRouter.post("/completeRegistration", function(req, res){
         var prisonerId = req.body.id;
         var birthDate = req.body.birthDate;
         var sentenceStartDate = req.body.sentenceStartDate;
+        var termSentence = req.body.termSentence;
         var rating = req.body.rating;
 
-        connection.query("UPDATE prisoner_info SET birth_date =?, sentence_start_date = ?, rating = ?, registration_status = true WHERE id=?", [birthDate, sentenceStartDate, rating, prisonerId], function(err, res1){
+        connection.query("UPDATE prisoner_info SET birth_date =?, sentence_start_date = ?, rating = ?, term_sentence= ?, registration_status = true WHERE id=?", [birthDate, sentenceStartDate, rating, termSentence, prisonerId], function(err, res1){
             if(err){
                 data.res= err;
                 res.json(data);
