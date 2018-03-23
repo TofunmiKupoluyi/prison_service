@@ -47,7 +47,7 @@ homeRouter.get("/", function(req, res){
     res.render("index.ejs", {successful:false});
 });
 
-clientRouter.get("/", function(req, res){
+clientRouter.get("/logout", function(req, res){
     req.session.prisonerNumber = null;
     req.session.recordId = null;
     res.redirect("/");
