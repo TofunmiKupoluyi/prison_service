@@ -35,19 +35,19 @@
 
     <!-- Default input subject -->
     <select class="dropdown-qualifications" name="educationLevel">
-      <option <% if (data[counter].skill_type =="Analytics"){ %>
+      <option <% if (skill_type =="Analytics"){ %>
           selected
           <%}%> value="Analytics">Analytics</option>
 
-      <option <% if (data[counter].skill_type=="Website Development"){ %>
+      <option <% if (skill_type=="Website Development"){ %>
           selected
           <%}%> value="Website Development">Website Development</option>
 
-      <option <% if (data[counter].skill_type=="Writing"){ %>
+      <option <% if (skill_type=="Writing"){ %>
           selected
           <%}%> value="Writing">Writing</option>
 
-      <option <% if (data[counter].skill_type=="Marketing"){ %>
+      <option <% if (skill_type=="Marketing"){ %>
           selected
           <%}%> value="Marketing">Marketing</option>
     </select>
