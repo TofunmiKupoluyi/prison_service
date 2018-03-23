@@ -19,5 +19,3 @@ var adminRouter = express.Router();
 
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
-
-
