@@ -39,7 +39,30 @@
       <label for="defaultFormContactSubjectEx" class="grey-text">Skill Type</label>
       <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= data[counter].skill_type %>" placeholder="Skill Type" disabled>
 
+      <label for="defaultFormContactSubjectEx" class="grey-text">Term Sentence</label>
+      <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="term_sentence" value= "<%= data[counter].term_sentence %>">
+
+      <label for="defaultFormContactSubjectEx" class="grey-text">Sentence Start Date</label>
+      <input type="date" id="defaultFormContactSubjectEx" class="form-control" name="sentenceStartDate" value= "<%= data[counter].sentenceStartDate %>">
+
       <br>
+      <select class="dropdown-qualifications" name="rating" >
+        <option <% if (data[counter].rating==2){ %>
+            selected
+            <%}%> value="1">Below High School</option>
+
+        <option <% if (data[counter].rating==1){ %>
+            selected
+            <%}%> value="2">High School</option>
+
+        <option <% if (data[counter].rating==3){ %>
+            selected
+            <%}%> value="3">College</option>
+
+        <option <% if (data[counter].rating==4){ %>
+            selected
+            <%}%> value="4">Graduate School & Above</option>
+      </select>
 
       <div class="text-center mt-4">
           <input type="submit"  class="btn btn-outline-warning" value="Approve <%= data[counter].first_name%>">
