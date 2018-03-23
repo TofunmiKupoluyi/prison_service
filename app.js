@@ -35,6 +35,9 @@ app.use(express.static("public"));
 app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
 
 homeRouter.get("/", function(req, res){
+    if(req.session.prisonerNumber){
+        res.render("new.ejs");
+    }
     res.render("index.ejs");
 });
 
@@ -91,6 +94,7 @@ clientRouter.post("/register", function(req, res){
             else{
                 data.err= 0;
                 data.res = "Successful registration";
+                req.session.prisonerNumber = prisonerNumber;
                 res.json(data);
             }
         });
