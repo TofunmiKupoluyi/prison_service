@@ -10,12 +10,21 @@
 <!-- Basic dropdown -->
 
     <select name="educationLevel">
+      <option <% if (educationLevel==2){ %>
+          selected
+          <%}%> value="2">Below High School</option>
+
       <option <% if (educationLevel==1){ %>
           selected
-          <%}%> value="1">Volvo</option>
-      <option value="2"> Benz</option>
-      <option value="3">Opel</option>
-      <option value="4">Audi</option>
+          <%}%> value="1">High School</option>
+
+      <option <% if (educationLevel==3){ %>
+          selected
+          <%}%> value="3">College</option>
+
+      <option <% if (educationLevel==4){ %>
+          selected
+          <%}%> value="4">Graduate School & Above</option>
     </select>
 <br>
 
