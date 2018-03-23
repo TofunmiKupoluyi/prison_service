@@ -70,3 +70,7 @@ margin:0 auto 0 auto;
   width: 80%;
   margin-left: 5%;
 }
+
+.suppodely-hidden{
+  visibility: hidden;
+}

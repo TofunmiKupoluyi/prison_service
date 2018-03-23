@@ -3,14 +3,13 @@
 <div class="prison-row">
 <div class="row">
   <% for(var counter=0; counter<data.length; counter++) { %>
-
   <div class="col-md-4"><form method="POST" action="/prison/completeRegistration">
       <p class="h4 text-center mb-4"><%= data[counter].first_name%> Profile</p>
 
       <!-- Default input name -->
 
   <!-- Basic dropdown -->
-
+      <input type="text" name="id" value=" <%=data[counter].id %>" class="suppodely-hidden" >
       <select class="dropdown-qualifications" name="educationLevel" disabled>
         <option <% if (data[counter].education_level==2){ %>
             selected
