@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
 var homeRouter = express.Router();
 var clientRouter = express.Router();
 var adminRouter = express.Router();
-var recruiterRouter = express.Router();
+var prisonRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,7 +30,7 @@ app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
-app.use("/recruiter", recruiterRouter);
+app.use("/prison", prisonRouter);
 
 app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
@@ -259,6 +259,29 @@ adminRouter.post("/hire", function(req, res){
         }
 
     })
+});
+
+prisonRouter.get("/getPrisoners", function(req, res){
+    var data={
+        err: 1,
+        res: ""
+    }
+    var categoryName = req.query.category;
+    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level"
+    +" FROM prisoner_info"
+    +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
+    +" WHERE (prisoner_info.registration_status=false)", function(err, res1){
+        if(err){
+            data.res= err;
+            res.json(data);
+        }
+        else{
+            data.res = res1;
+            data.err = 0;
+            res.json(data); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
+
+        }
+    });
 });
 
 app.listen(process.env.PORT || 3001, function(req, res){
