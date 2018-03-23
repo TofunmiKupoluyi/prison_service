@@ -8,8 +8,6 @@
     <!-- Default input name -->
 
 <!-- Basic dropdown -->
-<div class="btn-group">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic dropdown</button>
 
     <select name="educationLevel">
       <option <% if (educationLevel==1){ %>
@@ -19,13 +17,7 @@
       <option value="3">Opel</option>
       <option value="4">Audi</option>
     </select>
-
-
-</div>
-
-    <label for="defaultFormContactNameEx" class="grey-text">Education Level</label>
-    <input type="text" id="defaultFormContactNameEx" class="form-control" name="educationLevel" value= "<%= educationLevel %>" >
-    <br>
+<br>
 
     <!-- Default input email -->
     <label for="defaultFormContactEmailEx" class="grey-text">Your email</label>
