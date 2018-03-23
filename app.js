@@ -113,19 +113,19 @@ clientRouter.post("/completeQualifications", function(req, res){
         connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId, educationLevel, institution, cvLink, skillType], function(err, res1){
             if(err){
                 data.res = err;
-                res.json(data);
+                res.redirect("/client/login");
             }
             else{
                 data.err= 0;
                 data.res = "Successfully added qualification";
-                res.json(data);
+                res.redirect("/client/login");
             }
         });
     }
 
     else{
         data.res = "Not registered";
-        res.json(data);
+        res.redirect("/client/login");
     }
 });
 
