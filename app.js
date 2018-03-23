@@ -108,7 +108,7 @@ clientRouter.post("/completeQualifications", function(req, res){
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
 
-        connection.query("UPDATE qualification SET education_level=?, institution=?, cv_link=?, skill_type=? WHERE prisoner_id=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
+        connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
             if(err){
                 data.res = err;
                 res.json(data);
