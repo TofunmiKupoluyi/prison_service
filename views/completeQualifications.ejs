@@ -6,6 +6,21 @@
     <p class="h4 text-center mb-4">Complete Yor Profile</p>
 
     <!-- Default input name -->
+
+<!-- Basic dropdown -->
+<div class="btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic dropdown</button>
+    
+    <select>
+      <option value="volvo">Volvo</option>
+      <option <%(<%= educationLevel %> ==1)? "selected value='1' ": "value=1" %> >Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
+
+
+</div>
+
     <label for="defaultFormContactNameEx" class="grey-text">Education Level</label>
     <input type="text" id="defaultFormContactNameEx" class="form-control" name="educationLevel" value= "<%= educationLevel %>" >
     <br>
@@ -20,10 +35,6 @@
     <input type="text" id="defaultFormContactSubjectEx" class="form-control">
 
     <br>
-
-    <!-- Default textarea message -->
-    <label for="defaultFormContactMessageEx" class="grey-text">Your message</label>
-    <textarea type="text" id="defaultFormContactMessageEx" class="form-control" rows="3"></textarea>
 
     <div class="text-center mt-4">
         <input type="submit" class="btn btn-outline-warning" value="Update">
