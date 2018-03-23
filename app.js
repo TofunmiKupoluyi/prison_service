@@ -25,13 +25,15 @@ app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
 app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 } }));
   
-app.get("/", function(req, res){
+homeRouter.get("/", function(req, res){
     res.render("index.ejs");
 });
  
-app.get("/client", function(req, res){
+clientRouter.get("/", function(req, res){
     res.sendFile("jokes.html",{ root: __dirname+"/views" });
 });
+
+
  
 app.listen(process.env.PORT || 3001, function(req, res){
     console.log("Server Running at 30001");
