@@ -153,7 +153,7 @@ adminRouter.post("/completeRegistration", function(req, res){
         err:1,
         res: ""
     }
-    if(req.body.prisoner && req.body.birthDate && req.body.sentenceStartDate && req.body.rating){
+    if(req.body.id && req.body.birthDate && req.body.sentenceStartDate && req.body.rating){
         var prisonerId = req.body.id;
         var birthDate = req.body.birthDate;
         var sentenceStartDate = req.body.sentenceStartDate;
@@ -187,7 +187,7 @@ adminRouter.get("/category", function(req, res){
     connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level" 
     +" FROM prisoner_info"
     +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
-    +" WHERE qualification.skill_type = ? ", [category], function(err, res1){
+    +" WHERE (qualification.skill_type = ? and prisoner_info.registration_status=true)", [category], function(err, res1){
         if(err){
             data.res= err;
             res.json(data);
