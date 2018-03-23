@@ -7,7 +7,7 @@
 
     <!-- Default input name -->
     <label for="defaultFormContactNameEx" class="grey-text">Education Level</label>
-    <input type="text" id="defaultFormContactNameEx" class="form-control" value= <%= educationLevel || "" %> >
+    <input type="text" id="defaultFormContactNameEx" class="form-control" <% if (educationLevel){value= "<%= educationLevel%>" } %>>
     <br>
 
     <!-- Default input email -->
