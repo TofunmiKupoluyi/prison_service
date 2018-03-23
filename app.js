@@ -78,12 +78,12 @@ clientRouter.post("/login", function(req, res){
                     if(res2.length>0){
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink});
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink, skillType: res2[0].skillType});
                     }
                     else{
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: ""});
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
                     }
                 });
 
@@ -109,6 +109,7 @@ clientRouter.post("/completeQualifications", function(req, res){
         var institution = req.body.institution;
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
+    
 
         connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId, educationLevel, institution, cvLink, skillType], function(err, res1){
             if(err){
@@ -152,7 +153,7 @@ clientRouter.post("/register", function(req, res){
                 data.res = "Successful registration";
                 req.session.prisonerNumber = prisonerNumber;
                 req.session.recordId = res1.insertId;
-                res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: ""})
+                res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType: ""})
             }
         });
     }
