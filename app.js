@@ -16,12 +16,12 @@ var homeRouter = express.Router();
 var clientRouter = express.Router();
 var adminRouter = express.Router();
 var recruiterRouter = express.Router();
-  
+
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
 app.use("/recruiter", recruiterRouter);
-  
+
 app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
@@ -42,7 +42,7 @@ clientRouter.post("/login", function(req, res){
         res:""
     }
     var password = req.body.password;
-    var prisonerNumber = req.body.prisonerNumber; 
+    var prisonerNumber = req.body.prisonerNumber;
     connection.query("select * from prisoner_info where (prisoner_number=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
         if(err){
             data.res=err;
@@ -96,7 +96,7 @@ clientRouter.post("/register", function(req, res){
 });
 
 adminRouter.get("/", function(req, res){
-    res.render("index.ejs");
+    res.render("adminindex.ejs");
 });
 
 adminRouter.post("/completeRegistration", function(req, res){
