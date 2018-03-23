@@ -20,7 +20,9 @@ var homeRouter = express.Router();
 var clientRouter = express.Router();
 var adminRouter = express.Router();
 var recruiterRouter = express.Router();
-  
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
