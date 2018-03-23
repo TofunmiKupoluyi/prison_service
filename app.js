@@ -67,7 +67,7 @@ clientRouter.post("/login", function(req, res){
     connection.query("select * from prisoner_info where (email=? and password=?) limit 1 ", [prisonerNumber, password], function(err, res1){
         if(err){
             data.res=err;
-            res.render("index.ejs", {Successful:false});
+            res.render("index.ejs", {successful:false});
         }
         else{
             if(res1.length > 0){
@@ -77,14 +77,14 @@ clientRouter.post("/login", function(req, res){
                     console.log(res2);
                     req.session.prisonerNumber =1;
                     req.session.recordId = res1[0].id;
-                    res.render("completeQualifications.ejs", {Successful:true});
+                    res.render("completeQualifications.ejs", {successful:true});
                 });
 
             }
 
             else{
                 data.res= "Error";
-                res.render("index.ejs", {Successful:false});
+                res.render("index.ejs", {successful:false});
             }
         }
     });
