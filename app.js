@@ -75,9 +75,14 @@ clientRouter.post("/login", function(req, res){
                 data.err=0;
                 connection.query("select * from qualification where prisoner_id = ?", [res1[0].id], function(err, res2){
                     console.log(res2);
-                    req.session.prisonerNumber =1;
-                    req.session.recordId = res1[0].id;
-                    res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink});
+                    if(res2.length>0){
+                        req.session.prisonerNumber =1;
+                        req.session.recordId = res1[0].id;
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[0].education_level, institution: res2[0].institution, cvLink:res2[0].cvLink});
+                    }
+                    else{
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: "", institution: "", cvLink: ""});
+                    }
                 });
 
             }
