@@ -33,4 +33,6 @@ app.get("/client", function(req, res){
     res.sendFile("jokes.html",{ root: __dirname+"/views" });
 });
  
-app.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 3001, function(req, res){
+    console.log("Server Running at 30001");
+});
