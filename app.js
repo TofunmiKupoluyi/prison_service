@@ -110,7 +110,7 @@ clientRouter.post("/completeQualifications", function(req, res){
         var institution = req.body.institution;
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
-
+        console.log(recordId);
         connection.query("SELECT * FROM qualification WHERE prisoner_id=?", [recordId], function(err, res1){
             if(err){
                 res.json(err);
