@@ -42,9 +42,15 @@ homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.send(req.session.prisonerNumber);
+        res.render("completeRegistration", {successful:true});
     }
-    res.render("index.ejs");
+    res.render("index.ejs", {successful:false});
+});
+
+clientRouter.get("/logout", function(req, res){
+    req.session.prisonerNumber = null;
+    req.session.recordId = null;
+    res.redirect("/");
 });
 
 clientRouter.get("/", function(req, res){
@@ -126,20 +132,20 @@ clientRouter.post("/register", function(req, res){
         connection.query("INSERT INTO prisoner_info SET first_name=?, last_name=?, email=?, password=?, prisoner_number=?, registration_status=false", [firstName, lastName, email, password, prisonerNumber], function(err, res1){
             if(err){
                 data.res = err;
-                res.json(data);
+                res.render("index", {successful:false});
             }
             else{
                 data.err= 0;
                 data.res = "Successful registration";
                 req.session.prisonerNumber = prisonerNumber;
                 req.session.recordId = res1.insertId;
-                res.json(data);
+                res.render("completeQualifications.ejs", {successful: true})
             }
         });
     }
     else{
         data.res= "Incomplete parameters";
-        res.json(data);
+        res.render("index", {successful: false});
     }
 
 });
@@ -184,7 +190,7 @@ adminRouter.get("/category", function(req, res){
         res: ""
     }
     var categoryName = req.query.category;
-    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level" 
+    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level"
     +" FROM prisoner_info"
     +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
     +" WHERE (qualification.skill_type = ? and prisoner_info.registration_status=true)", [category], function(err, res1){
@@ -222,10 +228,10 @@ adminRouter.post("/hire", function(req, res){
                 text: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.', // plaintext body
                 html: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.' // html body
             };
-            transporter.sendMail(mailOptions, 
+            transporter.sendMail(mailOptions,
                 function(error, info){
                     if(error){
-                        
+
                         data.res = "Error sending mail";
                         res.json(data);
                     }
@@ -234,7 +240,7 @@ adminRouter.post("/hire", function(req, res){
                     res.json(data);
                 }
             );
-            
+
         }
 
     })
