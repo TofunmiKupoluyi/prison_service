@@ -2,7 +2,7 @@
 
 <div class="prison-row">
 <div class="row">
-  <% data.forEach(function(data){ %>
+  <% for(var counter=0; counter<data.length; counter++) {%>
 
   <div class="col-md-4"><form method="POST" action="/prison/completeRegistration">
       <p class="h4 text-center mb-4">InMate Profile</p>

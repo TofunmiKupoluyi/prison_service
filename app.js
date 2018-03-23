@@ -141,11 +141,11 @@ clientRouter.post("/completeQualifications", function(req, res){
                         }
                     });
                 }
-            
+
 
             }
         });
-        
+
     }
 
     else{
