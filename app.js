@@ -124,7 +124,7 @@ clientRouter.post("/completeQualifications", function(req, res){
                         else{
                             data.err=0;
                             data.res="Successful";
-                            res.json(data);
+                            res.redirect("/");
                         }
                     });
                 }
@@ -137,7 +137,7 @@ clientRouter.post("/completeQualifications", function(req, res){
                         else{
                             data.err= 0;
                             data.res = "Successfully added qualification";
-                            res.json(data);
+                            res.redirect("/");
                         }
                     });
                 }
@@ -212,7 +212,7 @@ prisonRouter.post("/completeRegistration", function(req, res){
             else{
                 data.err=0;
                 data.res= "Successfully updated";
-                res.json(data);
+                res.redirect("/prison");
             }
         });
     }
@@ -275,11 +275,13 @@ adminRouter.post("/hire", function(req, res){
                         if(error){
 
                             data.res = "Error sending mail";
-                            res.json(data);
+                            res.redirect("/admin");
                         }
-                        data.err=0;
-                        data.res = "Mail sent successfully";
-                        res.json(data);
+                        else{
+                            data.err=0;
+                            data.res = "Mail sent successfully";
+                            res.redirect("/admin");
+                        }
                     }
                 );
             }
