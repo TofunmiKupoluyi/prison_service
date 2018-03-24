@@ -3,11 +3,12 @@
 
 <div class="row">
   <% for(var counter=0; counter<data.length; counter++) { %>
-      <div class="card" style="padding:2%;">
+      <div class="card" style="margin-top:10%; margin-left:2%; padding-left:10px;">
   <div class="card-body">
     <h4 class="card-title"><%=data[counter].first_name%></h4>
-    <p class="card-text"><p><em>Skill type</em></p><%= data[counter].skill_type%></p>
-    <p class="card-text"><p><em>Sentence Term<?em</p><%=data[counter].term_sentence%></p>
+    <p class="card-text"><p>Skill type</p><%= data[counter].skill_type%></p>
+    <p class="card-text"><p>Sentence Term</p><%= data[counter].term_sentence%></p>
+
 
     <form method="POST" action="/admin/hire">
 
