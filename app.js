@@ -240,7 +240,7 @@ adminRouter.get("/category", function(req, res){
         else{
             data.res = res1;
             data.err = 0;
-            res.json(data); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
+            res.render("admingetprisoner.ejs",{data: res1}); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
 
         }
     });
@@ -286,7 +286,7 @@ adminRouter.post("/hire", function(req, res){
 });
 
 
-prisonRouter.get("/getPrisoners", function(req, res){
+prisonRouter.get("/", function(req, res){
     var data={
         err: 1,
         res: ""
