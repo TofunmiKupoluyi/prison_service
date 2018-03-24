@@ -2,7 +2,7 @@
 
     <% for(var counter=0; counter<data.length; counter++) { %>
 
-      <div class="card" style="width:400px">
+      <div class="card" style="width:400px; margin-top:10%">
   <img class="card-img-top" src="img_avatar1.png" alt="Card image">
   <div class="card-body">
     <h4 class="card-title"><%=data[counter].first_name%></h4>
@@ -12,7 +12,7 @@
     <form method="POST" action="/admin/hire">
 
     <input type="text" id="hire-button" name="prisonerId" value="<%=data[counter].id%>">
-    <input type='submit' class="btn btn-primary">
+    <input type='submit' class="btn btn-primary" value="Hire" >
 
     </form>
 
