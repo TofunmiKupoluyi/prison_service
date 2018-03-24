@@ -252,33 +252,37 @@ adminRouter.post("/hire", function(req, res){
         res: ""
     }
     var prisonerId = req.body.prisonerId;
-
     connection.query("SELECT email FROM prisoner_info WHERE id = ? LIMIT 1", [prisonerId], function(err, res1){
         if(err){
             data.res = err;
             res.json(data);
         }
         else{
-            var email = res1[0].email;
-            var mailOptions = {
-                from: '"LinkInmates" <admin@linkinmates.com>', // sender address
-                to: email, // list of receivers
-                subject: 'Linkinmate - Congratulations!', // Subject line
-                text: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.', // plaintext body
-                html: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.' // html body
-            };
-            transporter.sendMail(mailOptions,
-                function(error, info){
-                    if(error){
+            if(res1.length>0){
+                var email = res1[0].email;
+                var mailOptions = {
+                    from: '"LinkInmates" <admin@linkinmates.com>', // sender address
+                    to: email, // list of receivers
+                    subject: 'Linkinmate - Congratulations!', // Subject line
+                    text: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.', // plaintext body
+                    html: 'It is our pleasure to inform you that you have been accepted for a freelance job through Linkinmate.com. Your employer will get in touch with your prison with more information.' // html body
+                };
+                transporter.sendMail(mailOptions,
+                    function(error, info){
+                        if(error){
 
-                        data.res = "Error sending mail";
+                            data.res = "Error sending mail";
+                            res.json(data);
+                        }
+                        data.err=0;
+                        data.res = "Mail sent successfully";
                         res.json(data);
                     }
-                    data.err=0;
-                    data.res = "Mail sent successfully";
-                    res.json(data);
-                }
-            );
+                );
+            }
+            else{
+                res.json(data);
+            }
 
         }
 
