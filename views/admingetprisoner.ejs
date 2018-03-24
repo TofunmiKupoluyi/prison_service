@@ -1,27 +1,40 @@
 <% include ./partials/adminheader%>
-<% for(var counter=0; counter<data.length; counter++) { %>
-  <!--Card-->
-  <div class="row">
-    <div class="card-containers">
-<div class="card">
 
-    <!--Card image-->
-    <div class="col-md-4">
-    <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+  <!--Card group-->
+  <div class="card-deck">
+    <% for(var counter=0; counter<data.length; counter++) { %>
+      <!--Card-->
+      <div class="card mb-4">
 
-    <!--Card content-->
-    <div class="card-body">
-        <!--Title-->
-        <h4 class="card-title"><%=data[counter].first_name%></h4>
-        <!--Text-->
-        <p class="card-text"><%=data[counter].skill_type%></p>
-        <p class="card-text"><%=data[counter].term_sentence%></p>
-        <a href="#" class="btn btn-primary">Hire</a>
-    </div>
-</div>
-</div>
-</div>
-</div>
-<!--/.Card-->
-  <% } %>
+          <!--Card image-->
+          <div class="view overlay">
+              <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+              <a href="#!">
+                  <div class="mask rgba-white-slight"></div>
+              </a>
+          </div>
+          <!--Card image-->
+
+          <!--Card content-->
+          <div class="card-body">
+
+              <!--Title-->
+              <h4 class="card-title"><%=data[counter].first_name%></h4>
+
+              <!--Text-->
+              <p class="card-text"><%= data[counter].skill_type%> </p>
+              <p class="card-text"><p>Sentence Term</p><%=data[counter].term_sentence%></p>
+
+              <form method="POST" action="/admin/hire">
+              <input type="submit" class="btn btn-primary" name="<%= data[counter].id%>" value="Hire" >
+            </form>
+          </div>
+          <!--Card content-->
+
+      </div>
+      <!--Card-->
+<% } %>
+      </div>
+      <!--Card-->
+
 <% include ./partials/adminfooter%>
