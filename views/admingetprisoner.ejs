@@ -1,44 +1,45 @@
 <% include ./partials/adminheader%>
 
-  <!--Card group-->
-  
-  <div class="card-deck">
+
+<!--Card group-->
+<div class="card-deck">
+
     <% for(var counter=0; counter<data.length; counter++) { %>
-      <!--Card-->
-      <div class="card mb-4">
 
-          <!--Card image-->
-          <div class="view overlay">
-              <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
-              <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
-              </a>
-          </div>
-          <!--Card image-->
+    <!--Card-->
+    <div class="card mb-4">
 
-          <!--Card content-->
-          <div class="card-body">
+        <!--Card image-->
+        <div class="view overlay">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        <!--Card image-->
 
-              <!--Title-->
-              <h4 class="card-title"><%=data[counter].first_name%></h4>
+        <!--Card content-->
+        <div class="card-body">
 
-              <!--Text-->
-              <p class="card-text"><%= data[counter].skill_type%> </p>
-              <p class="card-text"><p>Sentence Term</p><%=data[counter].term_sentence%></p>
+            <!--Title-->
+            <h4 class="card-title"><%=data[counter].first_name%></h4>
 
-              <form method="POST" action="/admin/hire">
+            <!--Text-->
+            <p class="card-text"><%= data[counter].skill_type%> </p>
+            <p class="card-text"><p>Sentence Term</p><%=data[counter].term_sentence%></p>
 
-              <input type="text" id="hire-button" name="prisonerId" value="<%=data[counter].id%>">
-              <input type='submit' class="btn btn-primary">
+            <form method="POST" action="/admin/hire">
 
-              </form>
-          </div>
-          <!--Card content-->
+            <input type="text" id="hire-button" name="prisonerId" value="<%=data[counter].id%>">
+            <input type='submit' class="btn btn-primary">
 
-      </div>
-      <!--Card-->
-<% } %>
-      </div>
-      <!--Card-->
+            </form>
+        </div>
+        <!--Card content-->
 
+    </div>
+    <!--Card-->
+    <% } %>
+</div>
+<!--Card group-->
 <% include ./partials/adminfooter%>
