@@ -82,3 +82,7 @@ margin:0 auto 0 auto;
 .card-containers{
   margin-top: 10%;
 }
+
+#hire-button{
+  visibility: hidden;
+}

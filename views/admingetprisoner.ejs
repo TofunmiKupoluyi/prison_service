@@ -26,8 +26,11 @@
               <p class="card-text"><p>Sentence Term</p><%=data[counter].term_sentence%></p>
 
               <form method="POST" action="/admin/hire">
-              <input type="submit" class="btn btn-primary" name="<%= data[counter].id%>" value="Hire" >
-            </form>
+
+              <input type="text" id="hire-button" name="prisonerId" value="<%=data[counter].id%>">
+              <input type='submit' class="btn btn-primary">
+
+              </form>
           </div>
           <!--Card content-->
 
