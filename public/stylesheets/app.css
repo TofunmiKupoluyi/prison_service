@@ -75,9 +75,9 @@ margin:0 auto 0 auto;
   visibility: hidden;
 }
 
-.card-deck{
-  margin-left: 4%;
-  margin-top: 10%;
+
+.card-containers{
+  margin-top: 20%;
 }
 
 #hire-button{
