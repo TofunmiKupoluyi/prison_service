@@ -2,8 +2,9 @@
 <% for(var counter=0; counter<data.length; counter++) { %>
   <!--Card-->
 <div class="card">
-
+  <div class="row">
     <!--Card image-->
+    <div class="col-md-4">
     <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
     <!--Card content-->
@@ -15,7 +16,8 @@
         <p class="card-text"><%=data[counter].term_sentence%></p>
         <a href="#" class="btn btn-primary">Hire</a>
     </div>
-
+</div>
+</div>
 </div>
 <!--/.Card-->
   <% } %>
