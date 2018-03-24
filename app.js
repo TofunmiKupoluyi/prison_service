@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
 var homeRouter = express.Router();
 var clientRouter = express.Router();
 var adminRouter = express.Router();
-var recruiterRouter = express.Router();
+var prisonRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,19 +30,19 @@ app.use(cookieSession({ secret: 'randomStuff', cookie: { maxAge: 60 * 60 * 1000 
 app.use("/", homeRouter);
 app.use("/client", clientRouter);
 app.use("/admin", adminRouter);
-app.use("/recruiter", recruiterRouter);
+app.use("/prison", prisonRouter);
 
 app.use("/", express.static("./"));
 app.use("/", express.static("./node_modules"));
 app.use("/", express.static("./views"));
 app.use(express.static("public"));
-
+app.set("view engine","ejs");
 
 homeRouter.get("/", function(req, res){
     console.log(req.session);
     if(req.session.prisonerNumber){
 
-        res.render("completeRegistration", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
+        res.render("completeRegistration.ejs", {successful:true, educationLevel: "", institution: "", cvLink: "", skillType:""});
     }
     res.render("index.ejs", {successful:false});
 });
@@ -79,7 +79,7 @@ clientRouter.post("/login", function(req, res){
                         req.session.prisonerNumber =1;
                         req.session.recordId = res1[0].id;
                         console.log(res2.length-1);
-                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cvLink, skillType: res2[res2.length-1].skillType});
+                        res.render("completeQualifications.ejs", {successful:true, educationLevel: res2[res2.length-1].education_level, institution: res2[res2.length-1].institution, cvLink:res2[res2.length-1].cv_link, skillType: res2[res2.length-1].skill_type});
                     }
                     else{
                         req.session.prisonerNumber =1;
@@ -110,19 +110,42 @@ clientRouter.post("/completeQualifications", function(req, res){
         var institution = req.body.institution;
         var skillType = req.body.skillType;
         var cvLink = req.body.cvLink;
-
-
-        connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=? ON DUPLICATE KEY UPDATE education_level=?, institution=?, cv_link=?, skill_type=?", [educationLevel, institution, cvLink, skillType, recordId, educationLevel, institution, cvLink, skillType], function(err, res1){
+        console.log(recordId);
+        connection.query("SELECT * FROM qualification WHERE prisoner_id=?", [recordId], function(err, res1){
             if(err){
-                data.res = err;
-                res.json(data);
+                res.json(err);
             }
             else{
-                data.err= 0;
-                data.res = "Successfully added qualification";
-                res.json(data);
+                if(res1.length>0){
+                    connection.query("UPDATE qualification SET education_level=?, institution=?, cv_link=?, skill_type=? where prisoner_id=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
+                        if(err){
+                            res.json(err);
+                        }
+                        else{
+                            data.err=0;
+                            data.res="Successful";
+                            res.json(data);
+                        }
+                    });
+                }
+                else{
+                    connection.query("INSERT INTO qualification SET education_level=?, institution=?, cv_link=?, skill_type=?, prisoner_id=?", [educationLevel, institution, cvLink, skillType, recordId], function(err, res1){
+                        if(err){
+                            data.res = err;
+                            res.json(data);
+                        }
+                        else{
+                            data.err= 0;
+                            data.res = "Successfully added qualification";
+                            res.json(data);
+                        }
+                    });
+                }
+
+
             }
         });
+
     }
 
     else{
@@ -169,18 +192,19 @@ adminRouter.get("/", function(req, res){
     res.render("adminindex.ejs");
 });
 
-adminRouter.post("/completeRegistration", function(req, res){
+prisonRouter.post("/completeRegistration", function(req, res){
     var data = {
         err:1,
         res: ""
     }
-    if(req.body.id && req.body.birthDate && req.body.sentenceStartDate && req.body.rating){
+    if(req.body.id && req.body.birthDate && req.body.sentenceStartDate && req.body.termSentence && req.body.rating){
         var prisonerId = req.body.id;
         var birthDate = req.body.birthDate;
         var sentenceStartDate = req.body.sentenceStartDate;
+        var termSentence = req.body.termSentence;
         var rating = req.body.rating;
 
-        connection.query("UPDATE prisoner_info SET birth_date =?, sentence_start_date = ?, rating = ?, registration_status = true WHERE id=?", [birthDate, sentenceStartDate, rating, prisonerId], function(err, res1){
+        connection.query("UPDATE prisoner_info SET birth_date =?, sentence_start_date = ?, rating = ?, term_sentence= ?, registration_status = true WHERE id=?", [birthDate, sentenceStartDate, rating, termSentence, prisonerId], function(err, res1){
             if(err){
                 data.res= err;
                 res.json(data);
@@ -205,10 +229,10 @@ adminRouter.get("/category", function(req, res){
         res: ""
     }
     var categoryName = req.query.category;
-    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.skill_type, qualification.education_level"
+    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.institution, qualification.skill_type, qualification.education_level"
     +" FROM prisoner_info"
     +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
-    +" WHERE (qualification.skill_type = ? and prisoner_info.registration_status=true)", [category], function(err, res1){
+    +" WHERE (qualification.skill_type = ? and prisoner_info.registration_status=true)", [categoryName], function(err, res1){
         if(err){
             data.res= err;
             res.json(data);
@@ -259,6 +283,31 @@ adminRouter.post("/hire", function(req, res){
         }
 
     })
+});
+
+
+prisonRouter.get("/getPrisoners", function(req, res){
+    var data={
+        err: 1,
+        res: ""
+    }
+    var categoryName = req.query.category;
+    connection.query("SELECT prisoner_info.id, prisoner_info.first_name, prisoner_info.last_name, prisoner_info.term_sentence, qualification.institution, qualification.skill_type, qualification.education_level"
+    +" FROM prisoner_info"
+    +" INNER JOIN qualification ON prisoner_info.id = qualification.prisoner_id"
+    +" WHERE (prisoner_info.registration_status=false)", function(err, res1){
+        if(err){
+            data.res= err;
+            res.json(data);
+        }
+        else{
+            data.res = res1;
+            data.err = 0;
+            
+            res.render("prisonmaster.ejs", {data:res1}); // PATRICK RENDER YOUR VIEW, USEFUL INFORMATION IS IN data.res
+
+        }
+    });
 });
 
 app.listen(process.env.PORT || 3001, function(req, res){

@@ -34,13 +34,28 @@
     <br>
 
     <!-- Default input subject -->
-    <label for="defaultFormContactSubjectEx" class="grey-text">Skill Tupe</label>
-    <input type="text" id="defaultFormContactSubjectEx" class="form-control" name="skillType" value= "<%= skillType %>" placeholder="Skill Type">
+    <select class="dropdown-qualifications" name="skillType">
+      <option <% if (skillType =="Analytics"){ %>
+          selected
+          <%}%> value="Analytics">Analytics</option>
+
+      <option <% if (skillType=="Website Development"){ %>
+          selected
+          <%}%> value="Website Development">Website Development</option>
+
+      <option <% if (skillType=="Writing"){ %>
+          selected
+          <%}%> value="Writing">Writing</option>
+
+      <option <% if (skillType=="Marketing"){ %>
+          selected
+          <%}%> value="Marketing">Marketing</option>
+    </select>
 
     <br>
 
     <div class="text-center mt-4">
-        <input type="submit" class="btn btn-outline-warning" value="Update">
+        <input type="submit"  class="btn btn-outline-warning" value="Update">
     </div>
 </form>
 </div>

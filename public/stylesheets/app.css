@@ -65,3 +65,12 @@ margin:0 auto 0 auto;
   width: 60%;
   margin: 10% auto 0 auto;
 }
+.prison-row{
+  margin-top: 15%;
+  width: 80%;
+  margin-left: 5%;
+}
+
+.suppodely-hidden{
+  visibility: hidden;
+}
