@@ -76,6 +76,9 @@ margin:0 auto 0 auto;
 }
 
 .card{
-  max-width: 20%;
+  max-width: 30%;
+
+}
+.card-containers{
   margin-top: 10%;
 }
