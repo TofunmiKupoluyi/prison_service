@@ -18,9 +18,6 @@ header,
   background-color: #39448c !important;
 }
 
-.navbar:not(.top-nav-collapse) {
-  background: transparent !important;
-}
 
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
