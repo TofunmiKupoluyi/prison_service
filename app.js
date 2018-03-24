@@ -286,7 +286,7 @@ adminRouter.post("/hire", function(req, res){
 });
 
 
-prisonRouter.get("/getPrisoners", function(req, res){
+prisonRouter.get("/", function(req, res){
     var data={
         err: 1,
         res: ""
