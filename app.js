@@ -252,13 +252,16 @@ adminRouter.post("/hire", function(req, res){
         res: ""
     }
     var prisonerId = req.body.prisonerId;
+    console.log(prisonerId);
     connection.query("SELECT email FROM prisoner_info WHERE id = ? LIMIT 1", [prisonerId], function(err, res1){
         if(err){
             data.res = err;
             res.json(data);
         }
         else{
+            console.log(res1);
             if(res1.length>0){
+                console.log(res1);
                 var email = res1[0].email;
                 var mailOptions = {
                     from: '"LinkInmates" <admin@linkinmates.com>', // sender address
